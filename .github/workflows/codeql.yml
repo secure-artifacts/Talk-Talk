@@ -12,14 +12,20 @@ permissions:
 
 jobs:
   analyze:
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Check Xcode version
+        run: xcodebuild -version
+
+      - name: Clean DerivedData
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -32,7 +38,7 @@ jobs:
         run: |
           xcodebuild clean build \
             -project "Talk Talk.xcodeproj" \
-            -alltargets \
+            -target "说说" \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Perform CodeQL Analysis
