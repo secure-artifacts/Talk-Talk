@@ -33,8 +33,7 @@ jobs:
           xcodebuild clean build \
             -project "Talk Talk.xcodeproj" \
             -alltargets \
-            CODE_SIGNING_ALLOWED=NO \
-            -derivedDataPath build
+            CODE_SIGNING_ALLOWED=NO
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3

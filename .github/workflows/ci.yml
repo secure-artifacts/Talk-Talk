@@ -19,6 +19,6 @@ jobs:
         run: |
           xcodebuild \
             -project "Talk Talk.xcodeproj" \
-            -target "Talk Talk" \
+            -target "说说" \
             -configuration Debug \
             build
